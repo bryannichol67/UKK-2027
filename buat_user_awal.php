@@ -1,19 +1,24 @@
+
 <?php
-// buat_user_awal.php
-// Jalankan file  ini SATU KALI saja lewat browser untuk membuat user awal
-include 'config/koneksi.php';
+include "config/koneksi.php";
 
-$name     = 'Administrator';
-$email = 'admin@gmail.com';
-$password = password_hash('admin123', PASSWORD_DEFAULT);
-$role     ='admin';
+// Email akun yang digunakan
+$email = "user001@sekolah.test";
 
-$sql = "INSERT INTO t_users ( name, email, password, role)";
-$sql .= " VALUES ( '$name', '$email', '$password' , '$role')";
+// Password baru
+$password = password_hash("password", PASSWORD_DEFAULT);
+
+// Perbarui password akun
+$sql = "UPDATE t_users SET password='$password'
+        WHERE email='$email'";
 
 if (mysqli_query($koneksi, $sql)) {
-    echo 'User admin berhasil dibuat. Silakan hapus file ini.';
+    if (mysqli_affected_rows($koneksi) >= 0) {
+        echo "Password berhasil diproses.<br>";
+        echo "Email: user001@sekolah.test<br>";
+        echo "Password: password";
+    }
 } else {
-    echo 'Gagal membuat user: ' .mysqli_error($koneksi);
+    echo "Gagal: " . mysqli_error($koneksi);
 }
 ?>
