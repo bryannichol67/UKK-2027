@@ -89,10 +89,7 @@ $hasil = mysqli_query($koneksi, $sql);
         </div>
         <!-- KONTEN -->
         <main class="col-md-9 col-lg-10 p-4">
-            <h2>Dashboard</h2>
-            <p>
-                Selamat datang di halaman dashboard.
-            </p>
+   
        <script type="importmap">
 {
   "imports": {
@@ -104,7 +101,7 @@ $hasil = mysqli_query($koneksi, $sql);
 <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.min.js" integrity="sha384-BJf/nQgxZJU68GxBse97Vdlc8Rh+z9PzzXiS3/BjV+1nQPR7IKn+iJnD3DJvCMaU" crossorigin="anonymous"></script>
 
 
-    <h1>Kelola Kategori Pelanggaran</h1>
+    <h2>Kelola Kategori Pelanggaran</h2>
 
     <p>
         <a href="dashboard.php">Kembali ke Dashboard</a> 
@@ -159,12 +156,12 @@ $hasil = mysqli_query($koneksi, $sql);
 
             <td>
                 <a href="edit_pelanggaran_kategori.php?id=<?php echo $row['id']; ?>"
-                <button type="button" class="btn btn-info">Edit</button>
+                <button type="button" class="btn btn-warning">Edit</button>
                 </a>
                 
                 <a href="hapus_pelanggaran_kategori.php?id=<?php echo $row['id']; ?>"
                    onclick="return confirm('Yakin ingin menghapus kategori pelanggaran ini?');">
-                <button type="button" class="btn btn-warning">Hapus</button>
+                <button type="button" class="btn btn-danger">Hapus</button>
                 </a>
             </td>
         </tr>

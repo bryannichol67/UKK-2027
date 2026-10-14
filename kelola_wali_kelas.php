@@ -108,10 +108,7 @@ $query = mysqli_query($koneksi, "
         </div>
         <!-- KONTEN -->
         <main class="col-md-9 col-lg-10 p-4">
-            <h2>Dashboard</h2>
-            <p>
-                Selamat datang di halaman dashboard.
-            </p>
+         
             <script type="importmap">
 {
   "imports": {
@@ -180,12 +177,12 @@ while ($data = mysqli_fetch_assoc($query)) {
 
     <td>
         <a href="edit_wali_kelas.php?id=<?php echo $data['id']; ?>">
-            <button type="button" class="btn btn-info">Edit</button>
+            <button type="button" class="btn btn-warning">Edit</button>
         </a>
         |
         <a href="hapus_wali_kelas.php?id=<?php echo $data['id']; ?>"
            onclick="return confirm('Yakin ingin menghapus?')">
-            <button type="button" class="btn btn-warning">Hapus</button>
+            <button type="button" class="btn btn-danger">Hapus</button>
         </a>
     </td>
 </tr>

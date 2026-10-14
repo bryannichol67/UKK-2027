@@ -93,10 +93,7 @@ $data = mysqli_query($koneksi, "
         </div>
         <!-- KONTEN -->
         <main class="col-md-9 col-lg-10 p-4">
-            <h2>Dashboard</h2>
-            <p>
-                Selamat datang di halaman dashboard.
-            </p>
+          
 <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
 <h2>Penempatan Siswa</h2>
@@ -145,10 +142,10 @@ $data = mysqli_query($koneksi, "
 
         <td>
             <a href="edit_penempatan_siswa.php?id=<?php echo $row['id']; ?>">
-            <button type="button" class="btn btn-info">Edit</button>
+            <button type="button" class="btn btn-warning">Edit</button>
             </a> |
             <a href="hapus_penempatan_siswa.php?id=<?php echo $row['id']; ?>"
-               <button type="button" class="btn btn-warning">Hapus</button>
+               <button type="button" class="btn btn-danger">Hapus</button>
         </td>
     </tr>
     <?php

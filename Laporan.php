@@ -88,10 +88,7 @@ $data = mysqli_query($koneksi, "
         </div>
         <!-- KONTEN -->
         <main class="col-md-9 col-lg-10 p-4">
-            <h2>Dashboard</h2>
-            <p>
-                Selamat datang di halaman dashboard.
-            </p> <script type="importmap">
+          <script type="importmap">
 {
   "imports": {
     "@floating-ui/dom": "https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.6/dist/floating-ui.dom.esm.min.js",

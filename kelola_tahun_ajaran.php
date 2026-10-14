@@ -103,10 +103,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM t_tahun_ajaran ORDER BY id DESC")
         </div>
         <!-- KONTEN -->
         <main class="col-md-9 col-lg-10 p-4">
-            <h2>Dashboard</h2>
-            <p>
-                Selamat datang di halaman dashboard.
-            </p>
+        
             <script type="importmap">
 {
   "imports": {
@@ -165,12 +162,12 @@ $query = mysqli_query($koneksi, "SELECT * FROM t_tahun_ajaran ORDER BY id DESC")
 
         <td>
             <a href="edit_tahun_ajaran.php?id=<?php echo $tahun['id']; ?>">
-                <button type="button" class="btn btn-info">Edit</button>
+                <button type="button" class="btn btn-warning">Edit</button>
             </a>
             |
             <a href="hapus_tahun_ajaran.php?id=<?php echo $tahun['id']; ?>"
                onclick="return confirm('Yakin ingin menghapus tahun ajaran ini?')">
-                <button type="button" class="btn btn-warning">Hapus</button>
+                <button type="button" class="btn btn-danger">Hapus</button>
             </a>
         </td>
     </tr>
