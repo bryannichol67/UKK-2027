@@ -155,11 +155,11 @@ $hasil = mysqli_query($koneksi, $sql);
             </td>
 
             <td>
-                <a href="edit_pelanggaran_kategori.php?id=<?php echo $row['id']; ?>"
+                <a href="edit_kategori_pelanggaran.php?id=<?php echo $row['id']; ?>"
                 <button type="button" class="btn btn-warning">Edit</button>
                 </a>
                 
-                <a href="hapus_pelanggaran_kategori.php?id=<?php echo $row['id']; ?>"
+                <a href="hapus_kategori_pelanggaran.php?id=<?php echo $row['id']; ?>"
                    onclick="return confirm('Yakin ingin menghapus kategori pelanggaran ini?');">
                 <button type="button" class="btn btn-danger">Hapus</button>
                 </a>

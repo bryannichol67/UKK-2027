@@ -17,10 +17,10 @@ if (isset($_POST['update'])) {
     $status = $_POST['status'];
 
     // mengubah data
-    mysqli_query($koneksi, "UPDATE t_pelanggaran_kategori SET
+    mysqli_query($koneksi, "UPDATE t_pelanggaran SET
         nama='$nama',
         deskripsi='$deskripsi',
-        status_aktif='$status',
+        status_aktif='$status'
         WHERE id='$id'
     ");
 

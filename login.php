@@ -86,7 +86,7 @@ if (isset($_SESSION['user_id'])) {
 
 <form action="proses_login.php" method="POST" autocomplete="off">
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
+    <label for="exampleInputEmail1">Email</label>
     <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
   </div>
   <div class="form-group">

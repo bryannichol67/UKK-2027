@@ -118,7 +118,7 @@ $data = mysqli_query(
             <th>Nama Pelanggaran</th>
             <th>Poin</th>
             <th>Deskripsi</th>
-            <th>Status</th>
+            <th>Status Aktif</th>
             <th>Created At</th>
             <th>Updated At</th>
             <th>Aksi</th>
@@ -138,13 +138,15 @@ $data = mysqli_query(
             <td><?= htmlspecialchars($pelanggaran['poin'] ?? ''); ?></td>
             <td><?= htmlspecialchars($pelanggaran['deskripsi'] ?? ''); ?></td>
 
-            <td>
-                <?php
-                echo $pelanggaran['status_aktif'] == 1
-                    ? "Aktif"
-                    : "Tidak Aktif";
-                ?>
-            </td>
+        <td>
+            <?php
+            if ($pelanggaran['status_aktif'] == 1) {
+                echo "Aktif";
+            } else {
+                echo "Tidak Aktif";
+            }
+            ?>
+        </td>
 
             <td><?= htmlspecialchars($pelanggaran['created_at'] ?? ''); ?></td>
             <td><?= htmlspecialchars($pelanggaran['updated_at'] ?? ''); ?></td>

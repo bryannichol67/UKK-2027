@@ -98,6 +98,7 @@ $data = mysqli_query($koneksi, "
 </script>
 <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.min.js" integrity="sha384-BJf/nQgxZJU68GxBse97Vdlc8Rh+z9PzzXiS3/BjV+1nQPR7IKn+iJnD3DJvCMaU" crossorigin="anonymous"></script></body>
 
+<h2>Laporan</h2>
 <a href="dashboard.php">Kembali ke Dashboard</a>
 
 <br><br>

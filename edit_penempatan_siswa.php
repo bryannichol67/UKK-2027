@@ -13,12 +13,12 @@ if (isset($_POST['update'])) {
     $tahun = $_POST['tahun_id'];
     $tanggal = $_POST['tanggal_mulai'];
 
-    mysqli_query($koneksi, "UPDATE kelas_siswa SET
+    mysqli_query($koneksi, "UPDATE t_kelas_siswa SET
         siswa_id='$siswa',
         kelas_id='$kelas',
         tahun_ajaran_id='$tahun',
         tanggal_mulai='$tanggal',
-        updated_at=NOW(),
+        updated_at=NOW()
         WHERE id='$id'");
 
     header("Location: penempatan_siswa.php");
@@ -48,6 +48,12 @@ if (isset($_POST['update'])) {
     <input type="date" name="tanggal_mulai"
         value="<?php echo $row['tanggal_mulai']; ?>" required>
     <br><br>
+    Status:
+<select name="status">
+    <option value="1">Aktif</option>
+    <option value="0">Tidak Aktif</option>
+</select>
+<br><br>
 
     <button type="submit" name="update">Update</button>
     <br><br>

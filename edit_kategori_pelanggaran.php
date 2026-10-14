@@ -21,8 +21,7 @@ if (isset($_POST['update'])) {
         deskripsi='$deskripsi',
         status_aktif='$status',
         updated_at=NOW()
-        WHERE id='$id'
-    ");
+        WHERE id='$id'");
 
     header("Location: kelola_kategori_pelanggaran.php");
 }

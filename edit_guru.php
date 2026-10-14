@@ -6,12 +6,12 @@ $data = mysqli_query($koneksi, "SELECT * FROM t_guru WHERE id='$id'");
 $guru = mysqli_fetch_assoc($data);
 
 if (isset($_POST['update'])) {
-    mysqli_query($koneksi, " UPDATE t_guru SET
+    mysqli_query($koneksi, "UPDATE t_guru SET
         nip='$_POST[nip]',
         nama='$_POST[nama]',
         email='$_POST[email]',
         status_aktif='$_POST[status]',
-        updated_at=now(),
+        updated_at=now()
         WHERE id='$id'");
 
     header("Location: kelola_guru.php");
