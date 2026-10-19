@@ -8,5 +8,5 @@ mysqli_query(
     "DELETE FROM t_pelanggaran_kategori WHERE id='$id'"
 );
 
-header("Location: kelola_kategori_pelanggaran.php");
+header("Location: kelola_pelanggaran_kategori.php");
 ?>

@@ -1,120 +1,175 @@
-
 <?php
+// kelola_tahun_ajaran.php
+include 'includes/cek_session.php';
+include 'config/koneksi.php';
 
-session_start();
-
-include "config/koneksi.php";
-
-// Cek login
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
-}
-
-// Hanya admin
-if ($_SESSION['role'] != "admin") {
-    echo "Akses ditolak!";
-    exit;
-}
-
-// Ambil data tahun ajaran
-$query = mysqli_query($koneksi, "SELECT * FROM t_tahun_ajaran ORDER BY id DESC");
-
+$sql = "SELECT * FROM t_tahun_ajaran ORDER BY tanggal_mulai DESC";
+$hasil = mysqli_query($koneksi, $sql);
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="id">
 
 <head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Kelola Tahun Ajaran</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- DataTables Bootstrap 5 -->
+    <link href="https://cdn.datatables.net/2.3.4/css/dataTables.bootstrap5.min.css"
+          rel="stylesheet">
 </head>
 
 <body>
-       <div class="container-fluid">
+
+<div class="container-fluid">
     <div class="row">
-       <?php 
-       include "layout/sidebar.php";
-       ?>
+
+        <?php include 'layout/sidebar.php'; ?>
+
         <!-- KONTEN -->
         <main class="col-md-9 col-lg-10 p-4">
-        
-            <script type="importmap">
-{
-  "imports": {
-    "@floating-ui/dom": "https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.6/dist/floating-ui.dom.esm.min.js",
-    "vanilla-calendar-pro": "https://cdn.jsdelivr.net/npm/vanilla-calendar-pro@3.4.0/index.mjs"
-  }
-}
-</script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.min.js" integrity="sha384-BJf/nQgxZJU68GxBse97Vdlc8Rh+z9PzzXiS3/BjV+1nQPR7IKn+iJnD3DJvCMaU" crossorigin="anonymous"></script>
 
-<h2>Kelola Tahun Ajaran</h2>
+            <h2>Kelola Tahun Ajaran</h2>
+            <p>Selamat datang di halaman Tahun Ajaran.</p>
 
-<a href="dashboard.php">Kembali ke Dashboard</a>
-<br><br>
+            <div class="mb-3">
+                <a href="dashboard.php" class="btn btn-secondary">
+                    Kembali ke Dashboard
+                </a>
 
-<a href="tambah_tahun_ajaran.php">+ Tambah Tahun Ajaran</a>
-<br><br>
+                <a href="tambah_tahun_ajaran.php" class="btn btn-primary">
+                    Tambah Tahun Ajaran
+                </a>
+            </div>
 
-<table class="table table-bordered">
-<thead class="table-dark">
-    <tr>
-        <th>No</th>
-        <th>Nama Tahun Ajaran</th>
-        <th>Tanggal Mulai</th>
-        <th>Tanggal Selesai</th>
-        <th>Status</th>
-        <th>Created At</th>
-        <th>Updated At</th>
-        <th>Aksi</th>
-    </tr>
-</thead>
-    <?php
-    $no = 1;
+            <!-- TABEL DATA TAHUN AJARAN -->
+            <div class="table-responsive">
 
-    while ($tahun = mysqli_fetch_assoc($query)) {
-    ?>
+                <table id="tabelTahunAjaran"
+                       class="table table-striped table-bordered table-hover">
 
-    <tr>
-        <td><?php echo $no; ?></td>
-        <td><?php echo $tahun['nama']; ?></td>
-        <td><?php echo $tahun['tanggal_mulai']; ?></td>
-        <td><?php echo $tahun['tanggal_selesai']; ?></td>
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama Tahun Ajaran</th>
+                            <th>Tanggal Mulai</th>
+                            <th>Tanggal Selesai</th>
+                            <th>Status Aktif</th>
+                            <th>Dibuat</th>
+                            <th>Diubah</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
 
-        <td>
-            <?php
-            if ($tahun['status_aktif'] == 1) {
-                echo "Aktif";
-            } else {
-                echo "Tidak Aktif";
+                    <tbody>
+
+                    <?php while ($row = mysqli_fetch_assoc($hasil)) { ?>
+
+                        <tr>
+                            <td>
+                                <?php echo htmlspecialchars($row['id']); ?>
+                            </td>
+
+                            <td>
+                                <?php echo htmlspecialchars($row['nama']); ?>
+                            </td>
+
+                            <td>
+                                <?php echo htmlspecialchars($row['tanggal_mulai'] ?? ''); ?>
+                            </td>
+
+                            <td>
+                                <?php echo htmlspecialchars($row['tanggal_selesai'] ?? ''); ?>
+                            </td>
+
+                            <td>
+                                <?php
+                                if ($row['status_aktif'] == 1) {
+                                    echo "Aktif";
+                                } else {
+                                    echo "Tidak Aktif";
+                                }
+                                ?>
+                            </td>
+
+                            <td>
+                                <?php echo htmlspecialchars($row['created_at'] ?? ''); ?>
+                            </td>
+
+                            <td>
+                                <?php echo htmlspecialchars($row['updated_at'] ?? ''); ?>
+                            </td>
+
+                            <td>
+                                <a href="edit_tahun_ajaran.php?id=<?php echo urlencode($row['id']); ?>"
+                                   class="btn btn-warning btn-sm">
+                                    Edit
+                                </a>
+
+                                <a href="hapus_tahun_ajaran.php?id=<?php echo urlencode($row['id']); ?>"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Yakin ingin menghapus data tahun ajaran ini?');">
+                                    Hapus
+                                </a>
+                            </td>
+                        </tr>
+
+                    <?php } ?>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- Mengaktifkan DataTables -->
+<script>
+$(document).ready(function () {
+
+    $('#tabelTahunAjaran').DataTable({
+
+        language: {
+            search: "Cari:",
+            lengthMenu: "Tampilkan _MENU_ data",
+            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+            infoEmpty: "Tidak ada data tahun ajaran",
+            zeroRecords: "Data tahun ajaran tidak ditemukan",
+            emptyTable: "Belum ada data tahun ajaran",
+
+            paginate: {
+                first: "Pertama",
+                last: "Terakhir",
+                next: "Berikutnya",
+                previous: "Sebelumnya"
             }
-            ?>
-        </td>
+        },
 
-        <td><?php echo $tahun['created_at']; ?></td>
-        <td><?php echo $tahun['updated_at']; ?></td>
+        pageLength: 10,
 
-        <td>
-            <a href="edit_tahun_ajaran.php?id=<?php echo $tahun['id']; ?>">
-                <button type="button" class="btn btn-warning">Edit</button>
-            </a>
-            |
-            <a href="hapus_tahun_ajaran.php?id=<?php echo $tahun['id']; ?>"
-               onclick="return confirm('Yakin ingin menghapus tahun ajaran ini?')">
-                <button type="button" class="btn btn-danger">Hapus</button>
-            </a>
-        </td>
-    </tr>
+        lengthMenu: [5, 10, 25, 50, 100],
 
-    <?php
-        $no++;
-    }
-    ?>
+        order: [[2, 'desc']]
+    });
 
-</table>
+});
+</script>
 
 </body>
 </html>
-

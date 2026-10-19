@@ -23,7 +23,7 @@ if (isset($_POST['update'])) {
         updated_at=NOW()
         WHERE id='$id'");
 
-    header("Location: kelola_kategori_pelanggaran.php");
+    header("Location: kelola_pelanggaran_kategori.php");
 }
 ?>
 

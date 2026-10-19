@@ -12,7 +12,7 @@ if (isset($_POST['simpan'])) {
         VALUES
         ('$nama', '$deskripsi', '$status')");
 
-    header("Location: kelola_kategori_pelanggaran.php");
+    header("Location: kelola_pelanggaran_kategori.php");
 }
 ?>
 
@@ -47,4 +47,4 @@ Status:
 
 <br>
 
-<a href="kelola_kategori_pelanggaran.php">Kembali</a>
+<a href="kelola_pelanggaran_kategori.php">Kembali</a>
