@@ -34,49 +34,42 @@ $role = $_SESSION['role'] ?? '-';
     <p>Selamat datang, <b><?php echo $nama; ?></b></p>
     <p>Email: <?php echo $email; ?></p>
     <p>Role: <?php echo $role; ?></p>
-            <div class="row">
-                <!-- CARD DATA SISWA -->
-                <div class="col-md-4 mb-3">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Data Siswa
-                            </h5>
-                            <h2>
-                                120
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-                <!-- CARD DATA GURU -->
-                <div class="col-md-4 mb-3">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Data Guru
-                            </h5>
-                            <h2>
-                                25
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-                <!-- CARD KELAS -->
-                <div class="col-md-4 mb-3">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Kelas
-                            </h5>
-                            <h2>
-                             12
-                          </h2>
-                        </div>
-                    </div>
-                </div>
+ 
+<div class="row">
+
+    <!-- CARD DATA SISWA -->
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Data Siswa</h5>
+                <h2>120</h2>
+                <a href="data_siswa.php" class="btn btn-primary">Lihat Data</a>
             </div>
-        </main>
+        </div>
     </div>
+
+    <!-- CARD DATA GURU -->
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Data Guru</h5>
+                <h2>25</h2>
+                <a href="data_guru.php" class="btn btn-primary">Lihat Data</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARD KELAS -->
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Kelas</h5>
+                <h2>12</h2>
+                <a href="data_kelas.php" class="btn btn-primary">Lihat Data</a>
+            </div>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>
