@@ -43,7 +43,6 @@ $role = $_SESSION['role'] ?? '-';
             <div class="card-body">
                 <h5 class="card-title">Data Siswa</h5>
                 <h2>120</h2>
-                <a href="data_siswa.php" class="btn btn-primary">Lihat Data</a>
             </div>
         </div>
     </div>
@@ -54,7 +53,6 @@ $role = $_SESSION['role'] ?? '-';
             <div class="card-body">
                 <h5 class="card-title">Data Guru</h5>
                 <h2>25</h2>
-                <a href="data_guru.php" class="btn btn-primary">Lihat Data</a>
             </div>
         </div>
     </div>
@@ -65,7 +63,6 @@ $role = $_SESSION['role'] ?? '-';
             <div class="card-body">
                 <h5 class="card-title">Kelas</h5>
                 <h2>12</h2>
-                <a href="data_kelas.php" class="btn btn-primary">Lihat Data</a>
             </div>
         </div>
     </div>

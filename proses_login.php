@@ -1,20 +1,26 @@
+```php
 <?php
-
 session_start();
+require_once "config/koneksi.php";
 
-include "config/koneksi.php";
+// Pastikan form login dikirim dengan POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header("Location: login.php");
+    exit;
+}
 
+// Ambil input dari form
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 
-// Cek input
+// Periksa input kosong
 if ($email === '' || $password === '') {
     $_SESSION['pesan_error'] = "Email dan password wajib diisi.";
     header("Location: login.php");
     exit;
 }
 
-// Cari user
+// Cari akun berdasarkan email
 $sql = "SELECT id, name, email, password, role
         FROM t_users
         WHERE email = ?
@@ -34,50 +40,58 @@ mysqli_stmt_execute($stmt);
 mysqli_stmt_bind_result(
     $stmt,
     $id,
-    $name,
+    $nama,
     $email_db,
     $password_db,
     $role
 );
 
-// Email tidak ditemukan
+// Periksa apakah akun ditemukan
 if (!mysqli_stmt_fetch($stmt)) {
-
     mysqli_stmt_close($stmt);
 
-    $_SESSION['pesan_error'] = "Email tidak ditemukan.";
+    $_SESSION['pesan_error'] = "Email atau password salah.";
     header("Location: login.php");
     exit;
 }
 
 mysqli_stmt_close($stmt);
 
-// Cek password
+// Verifikasi password
 if (!password_verify($password, $password_db)) {
-
-    $_SESSION['pesan_error'] = "Password salah.";
+    $_SESSION['pesan_error'] = "Email atau password salah.";
     header("Location: login.php");
     exit;
 }
 
-// Cek role
-if ($role !== 'admin' && $role !== 'guru') {
+// Normalisasi role
+$role = strtolower(trim($role));
 
+// Batasi role yang diperbolehkan
+if (!in_array($role, ['admin', 'guru'], true)) {
     $_SESSION['pesan_error'] = "Role akun tidak diizinkan.";
     header("Location: login.php");
     exit;
 }
 
-// Buat session
+// Buat session baru setelah login berhasil
 session_regenerate_id(true);
 
+$_SESSION['login'] = true;
 $_SESSION['user_id'] = $id;
-$_SESSION['nama'] = $name;
+$_SESSION['nama'] = $nama;
 $_SESSION['email'] = $email_db;
 $_SESSION['role'] = $role;
 
-// Login berhasil
-header("Location: dashboard.php");
-exit;
+// Arahkan sesuai role
+if ($role === 'admin') {
+    header("Location: dashboard.php");
+    exit;
+}
 
+if ($role === 'guru') {
+    header("Location: dashboard.php");
+    exit;
+}
 ?>
+```
